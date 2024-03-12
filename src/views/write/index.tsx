@@ -27,8 +27,8 @@ function Write() {
     const submit = () => {
         console.log(content);
         console.log(title);
-        let author = '1'
-        let userId = '2'
+        const author = '1'
+        const userId = '2'
         blogApi.createApi({ title, content,author,userId,label }).then(res => {
             console.log(res);
         })
