@@ -1,19 +1,19 @@
 /*
  * @Author: xx
  * @Date: 2023-08-24 21:14:59
- * @LastEditors: your name
- * @LastEditTime: 2024-03-12 17:31:16
+ * @LastEditors: Do not edit
+ * @LastEditTime: 2024-03-12 20:38:40
  * @Description: 
  * @FilePath: \blog-view\src\views\home\index.tsx
  */
 import { Button, Col, Input, Row } from "antd";
 // import { Component, useState } from "react";
 import './index.scss'
-import NavigateCompont from '../../component/Menu/List.tsx'
+import NavigateCompont from '../../component/Menu/List'
 // import  Router  from "../../router/index.tsx";
 // import BlogDetail from '../blogDetail/index.tsx'
-import CardComponent from "../../component/Card/index.tsx";
-import { blogApi } from "@/api/httpApi.ts";
+import CardComponent from "@/component/Card/index";
+import { blogApi } from "@/api/httpApi";
 import  { useState, useEffect } from 'react';
 const Home = () => {
     

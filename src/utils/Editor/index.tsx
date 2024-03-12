@@ -64,14 +64,6 @@ const Editor = ({ handelEditorTitle, handleEditorContent }: { handelEditorTitle:
                 <Card title={
                     <Input value={title} onChange={handleTitleChange} bordered={false} placeholder="在此输入你的标题" style={{ width: '100%' }} />}
                     style={{ margin: 10 }}>
-                    {/* <Editor onValueChange={handleValueChange}></Editor> */}
-                    {/* <BraftEditor
-                        value={editorState}
-                        onChange={handleEditorChange}
-                        media={{ uploadFn: handleImageUpload }}
-                        placeholder="请输入正文..."
-                    /> */}
-
                     <ReactQuill
                         theme='snow'
                         value={editorState}

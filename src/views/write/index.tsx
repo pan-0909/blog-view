@@ -1,5 +1,13 @@
+/*
+ * @Author: pan
+ * @Date: 2024-03-12 20:28:40
+ * @LastEditors: Do not edit
+ * @LastEditTime: 2024-03-12 20:42:42
+ * @Description: 
+ * @FilePath: \blog-view\src\views\write\index.tsx
+ */
 import { Button, Select, SelectProps } from 'antd';
-import Editor from '../../utils/Editor/index.tsx'
+import Editor from '@/utils/Editor/index'
 import 'braft-editor/dist/index.css';
 import { blogApi } from "../../api/httpApi";
 import '../../api/httpApi.ts'

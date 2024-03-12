@@ -1,5 +1,6 @@
 .menu{
-    width: 250px;
+  /* 设置nav的宽 */
+    width: 450px;
     position: absolute;
     right: 0;
     top: 0;

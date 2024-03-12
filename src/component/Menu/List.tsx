@@ -2,9 +2,9 @@
  * @Author: pan
  * @Date: 2023-08-24 22:02:11
  * @LastEditors: Do not edit
- * @LastEditTime: 2023-12-16 23:34:58
+ * @LastEditTime: 2024-03-12 20:54:01
  * @Description: menu列表组件
- * @FilePath: \demo\src\component\Menu\List.tsx
+ * @FilePath: \blog-view\src\component\Menu\List.tsx
  */
 import { Menu } from 'antd';
 import React from 'react';
@@ -23,6 +23,10 @@ class List extends React.Component<ListProps> {
         {
           label: '首页',
           key: '/home',
+        },
+        {
+          label: '论坛中心',
+          key: '/forum',
         },
         {
           label: '个人中心',
