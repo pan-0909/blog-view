@@ -3,28 +3,11 @@ import { Card, Input } from 'antd';
 import BraftEditor from 'braft-editor';
 import 'braft-editor/dist/index.css';
 import axios from 'axios';
-import ReactQuill from 'react-quill'
-import 'quill/dist/quill.snow.css'
 const Editor = ({ handelEditorTitle, handleEditorContent }: { handelEditorTitle: (title: string) => void, handleEditorContent: (content: string) => void }) => {
-    // 配置quill编辑器
-    const quillOption = {
-        toolbar: {
-            container: [
-                [{ header: [1, 2, 3, 4, 5, 6, false] }],
-                ['bold', 'italic', 'underline', 'strike'],
-                [{ list: 'ordered' }, { list: 'bullet' }],
-                [{ align: [] }],
-                [{ color: [] }, { background: [] }],
-                ['link', 'image'],
-                ['clean']
-            ]
-        }
-    }
-
 
     // 标题
     const [title, setTitle] = useState('');
-    const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement> ) => {
         setTitle(e.target.value);
         handelEditorTitle(e.target.value);
     };
@@ -33,13 +16,13 @@ const Editor = ({ handelEditorTitle, handleEditorContent }: { handelEditorTitle:
     const [editorState, setEditorState] = useState(BraftEditor.createEditorState(null));
     const handleEditorChange = (newEditorState: any) => {
         setEditorState(newEditorState);
-        const content = editorState;  //获取富文本的内容
+        const content = editorState.toHTML();  //获取富文本的内容
         handleEditorContent(content)
     };
 
 
     // 上传图片
-    const handleImageUpload = (param: any) => {
+    const handleImageUpload = (param:any) => {
         console.log(param);
         const formData = new FormData();
         formData.append('file', param.file);
@@ -58,6 +41,11 @@ const Editor = ({ handelEditorTitle, handleEditorContent }: { handelEditorTitle:
             });
     };
 
+
+
+
+
+
     return (
         <>
             <div>
@@ -65,19 +53,11 @@ const Editor = ({ handelEditorTitle, handleEditorContent }: { handelEditorTitle:
                     <Input value={title} onChange={handleTitleChange} bordered={false} placeholder="在此输入你的标题" style={{ width: '100%' }} />}
                     style={{ margin: 10 }}>
                     {/* <Editor onValueChange={handleValueChange}></Editor> */}
-                    {/* <BraftEditor
+                    <BraftEditor
                         value={editorState}
                         onChange={handleEditorChange}
                         media={{ uploadFn: handleImageUpload }}
                         placeholder="请输入正文..."
-                    /> */}
-
-                    <ReactQuill
-                        theme='snow'
-                        value={editorState}
-                        onChange={handleEditorChange}
-                        modules={quillOption}
-                        className='ql-editor'
                     />
                 </Card>
             </div>

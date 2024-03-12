@@ -2,12 +2,11 @@
  * @Author: xx
  * @Date: 2023-08-24 21:14:59
  * @LastEditors: your name
- * @LastEditTime: 2024-03-12 14:06:29
+ * @LastEditTime: 2024-03-12 17:31:16
  * @Description: 
  * @FilePath: \blog-view\src\views\home\index.tsx
  */
 import { Button, Col, Input, Row } from "antd";
-import React from "react";
 // import { Component, useState } from "react";
 import './index.scss'
 import NavigateCompont from '../../component/Menu/List.tsx'
@@ -15,22 +14,31 @@ import NavigateCompont from '../../component/Menu/List.tsx'
 // import BlogDetail from '../blogDetail/index.tsx'
 import CardComponent from "../../component/Card/index.tsx";
 import { blogApi } from "@/api/httpApi.ts";
-// import { blogApi } from "../../api/httpApi.ts";
+import  { useState, useEffect } from 'react';
 const Home = () => {
-    const blog = [
-        {
-            id: 1,
-            title: '标题',
-            content: '内容',
-            time: "2022-8-12",
-            author: 'pan',
-            label: 'react'
-        },
-    ];
-    blogApi.getBlogListApi().then((res) => {
-        console.log(res);
+    
+    interface Blog {
+        id: string,
+        title:string,
+        label:Array<string>,
+        content:string,
+        createTime: string,
+        author: string,
+        userId: number,
+        likes: { type: number, default: 0 },
+        likedBy: object,
+        collects: number,
+        collectedBy: object
+    }
+    const [blogList, setBlogList] = useState<Blog[]>([]);
+  useEffect(() => {
+    blogApi.getBlogListApi({}).then((res:any) => {
+      setBlogList(res.data as Blog[]);
     });
+    
+  }, []);
 
+  console.log(blogList);
     return (<>
         <div className="header">
             <div className="navBox">
@@ -48,11 +56,11 @@ const Home = () => {
             {/* <Router /> */}
             {/* <h1>文章列表</h1> */}
             <Row gutter={10}  >
-            {blog.map((item, index) => (
-                <Col span={6}  key={item.id} >
-                <CardComponent title={item.title} content={item.content} />
-                </Col>
-            ))}
+                {blogList.map((item:Blog) => (
+                    <Col span={6} key={item.id} >
+                        <CardComponent title={item.title} content={item.content} />
+                    </Col>
+                ))}
             </Row>
         </div>
     </>)

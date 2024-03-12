@@ -5,12 +5,9 @@ import axios, {
   AxiosResponse,
   InternalAxiosRequestConfig
 } from "axios";
-const apiUrl = import.meta.env;
-console.log(import.meta.env,111);
+const baseURL = import.meta.env.VITE_USER_API_BASE_URL;
 
 //接口地址
-const baseURL = apiUrl 
-
 const service: AxiosInstance = axios.create({
   baseURL,
   //超时时间
@@ -35,11 +32,22 @@ service.interceptors.request.use((config: InternalAxiosRequestConfig) => {
 
 
 //添加响应拦截器
-service.interceptors.response.use((response: AxiosResponse) => {
+interface ResponseType {
+  data: any,
+  status: number,
+  statusText: string
+}
+service.interceptors.response.use((response: ResponseType) => {
   //2xx 范围内的状态码都会触发该函数。
   //对响应数据做点什么
-
-  return response;
+  console.log(response, 'response');
+  const {data,status,statusText} = response;
+  const res = {
+    data,
+    status,
+    statusText
+  }
+  return res;
 }, (error: AxiosError) => {
   //超出 2xx 范围的状态码都会触发该函数
   //对响应错误做点什么
