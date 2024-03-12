@@ -1,0 +1,109 @@
+$header-height: 100vh; /* 定义局部变量头部高度 */
+.header{
+  width: 1920px;
+  height: $header-height;
+  overflow: hidden; /*防止图片放大后溢出div*/
+  background-image: url(https://img.tukuppt.com/bg_grid/05/37/54/v40ZCaqERa.jpg!/fh/350);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-attachment: fixed;
+  /*放大完成时间*/
+  transition: all 1s ease-out; /*ease-out 减速、慢慢结束*/
+  &:hover {
+    background-size: 110%;
+  }
+
+}
+.navBox{
+  z-index: 99;
+  position: fixed;
+  display: flex;
+  justify-content: space-between;
+  width: 1920px;
+}
+
+.Search {
+  width: 280px;
+  margin-left: 20px;
+  margin-top: 10px;
+  background-color: transparent;
+  z-index: 10;
+  border-color: white;
+  /* 设置边框颜色为红色 */
+}
+.nav{
+  width: 400px;
+  margin-top: 10px;
+  background-color: transparent;
+  z-index: 10;
+  border-color: white;
+}
+
+
+
+// .smegma {
+//   height: $header-height;
+//   width: 100vw;
+//   background-color: black;
+//   opacity: 0.3;
+//   position: absolute;
+//   top: 0;
+//   z-index: 9;
+// }
+
+// .menu {
+//   width: 150px;
+//   position: absolute;
+//   right: 0;
+//   top: 0;
+//   background-color: transparent;
+//   z-index: 10;
+//   color: white;
+// }
+
+
+.titleBox {
+  position: absolute;
+  left: 0;
+  right: 0;
+  width: 1920px;
+  /* top: 160px; */
+  height: $header-height;
+  margin: 10px auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  z-index: 1;
+}
+.title {
+  color: white;
+  margin-right: 10px;
+}
+
+.Search:focus {
+  border-color: white;
+  /* 设置输入框激活状态时的边框颜色为蓝色 */
+}
+
+.Search:hover {
+  border-color: white;
+  /* 设置输入框激活状态时的边框颜色为蓝色 */
+}
+
+input {
+  background-color: transparent !important;
+}
+
+
+input[type='text']::-webkit-input-placeholder {
+  color: white;
+}
+
+:where(.css-dev-only-do-not-override-byeoj0).ant-menu-horizontal {
+  border-bottom: 0px;
+}
+
+.blogBox{
+  // width: 100px;
+}

@@ -1,0 +1,14 @@
+.iconSpan{
+    margin-left: 10px;
+}
+
+.iconBox {
+    display:flex;
+    align-items:center;
+    margin-top:5px;
+}
+
+.spanNumber{
+    font-size: 16px;
+    font-weight: 600;
+}

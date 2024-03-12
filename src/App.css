@@ -1,0 +1,44 @@
+  /* .header {
+  height: 400px;
+  width: 100%;
+  position: relative;
+}
+.img {
+  height: 400px;
+  width: 100%;
+  mask-repeat: no-repeat;
+}
+.smegma {
+  height: 400px;
+  width: 100vw;
+  background-color: black;
+  opacity: 0.3;
+  position: absolute;
+  top: 0;
+  z-index: 9;
+}
+.menu{
+  width: 150px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  background-color: transparent;
+  z-index: 10;
+  color: white;
+} */
+
+/* 页面宽 */
+.appBodyBox{
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+}
+.appBox {
+  width: 1920px;
+}
+
+
+
+/* Mobile */
+@media only screen and (max-width: 600px) {
+}

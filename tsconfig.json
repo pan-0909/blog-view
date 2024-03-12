@@ -1,0 +1,50 @@
+{
+  "compilerOptions": {
+    // 允许在导入语句中使用以 ".tsx" 结尾的文件扩展名
+    "allowImportingTsExtensions": true,
+    "skipLibCheck": true,
+    // 启用使用默认导出的模块的简化导入语法
+    "esModuleInterop": true,
+    // 允许从没有默认导出的模块中导入默认导出。
+    "allowSyntheticDefaultImports": true,
+    // 允许导入 JSON 模块
+    "resolveJsonModule": true,
+    "declaration": true, // 是否自动创建类型声明文件
+    "declarationDir": "./lib", // 类型声明文件的输出目录
+    "allowJs": true, // 允许编译javascript文件。
+
+    
+    "target": "ES2020",
+    "useDefineForClassFields": true,
+    "lib": [
+      "ES2020",
+      "DOM",
+      "DOM.Iterable"
+    ],
+    "module": "ESNext",
+    /* Bundler mode */
+    "moduleResolution": "bundler",
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react-jsx",
+    "baseUrl": ".", // 工作根目录
+    "paths": { // 指定模块的路径，和baseUrl有关联，和webpack中resolve.alias配置一样
+      "@/*": [
+        "src/*"
+      ]
+    },
+    /* Linting */
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true
+  },
+  "include": [
+    "src"
+  ],
+  "references": [
+    {
+      "path": "./tsconfig.node.json"
+    }
+  ]
+}
