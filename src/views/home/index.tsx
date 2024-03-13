@@ -18,7 +18,7 @@ import  { useState, useEffect } from 'react';
 const Home = () => {
     
     interface Blog {
-        id: string,
+        _id: string,
         title:string,
         label:Array<string>,
         content:string,
@@ -57,8 +57,8 @@ const Home = () => {
             {/* <h1>文章列表</h1> */}
             <Row gutter={10}  >
                 {blogList.map((item:Blog) => (
-                    <Col span={6} key={item.id} >
-                        <CardComponent title={item.title} content={item.content} />
+                    <Col span={6} key={item._id} >
+                        <CardComponent title={item.title} content={item.content} _id={item._id}/>
                     </Col>
                 ))}
             </Row>

@@ -2,7 +2,7 @@
  * @Author: xx
  * @Date: 2023-08-24 22:41:56
  * @LastEditors: your name
- * @LastEditTime: 2024-03-13 10:39:04
+ * @LastEditTime: 2024-03-13 14:09:34
  * @Description: card卡片
  * @FilePath: \blog-view\src\component\Card\index.tsx
  */
@@ -11,17 +11,16 @@ import { Card, Avatar, Popover, Button } from 'antd';
 import { EllipsisOutlined, LikeOutlined, CommentOutlined } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
 
-const CardComponent = ({ title, content }: { title: string, content: string }) => {
+const CardComponent = ({ title, content,_id }: { title: string, content: string ,_id: string }) => {
   const navigate = useNavigate()
   const { Meta } = Card;
 
   /**
-   * @description: 获取详情
-   * @param {*} e
+   * @description: 获取详情携带id
+   * @param {*} _id string
    */
-  const getDetail = (e: any) => {
-    console.log(e);
-    navigate('/BlogDetail')
+  const getDetail = (_id: string) => {
+    navigate('/BlogDetail',{ state: { _id: _id } })
   }
 
   /**
@@ -37,7 +36,7 @@ const CardComponent = ({ title, content }: { title: string, content: string }) =
     <>
       <Card
 
-        onClick={getDetail.bind(null, title)}
+        onClick={getDetail.bind(null,_id)}
         hoverable
         style={{ margin: '5px 0px' }}
         cover={<img alt="example" src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png" style={{ height: '170px' }} />}
