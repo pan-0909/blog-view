@@ -1,17 +1,17 @@
 /*
  * @Author: xx
  * @Date: 2023-08-24 22:41:56
- * @LastEditors: Do not edit
- * @LastEditTime: 2023-12-16 18:33:15
+ * @LastEditors: your name
+ * @LastEditTime: 2024-03-13 10:39:04
  * @Description: card卡片
- * @FilePath: \demo\src\component\Card\index.tsx
+ * @FilePath: \blog-view\src\component\Card\index.tsx
  */
 import React from 'react';
 import { Card, Avatar, Popover, Button } from 'antd';
 import { EllipsisOutlined, LikeOutlined, CommentOutlined } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
 
-const CardComponent = ({ title, content }:{title: string, content: string}) => {
+const CardComponent = ({ title, content }: { title: string, content: string }) => {
   const navigate = useNavigate()
   const { Meta } = Card;
 
@@ -50,14 +50,14 @@ const CardComponent = ({ title, content }:{title: string, content: string}) => {
             <CommentOutlined />
             <span style={{ marginLeft: '7px', fontSize: '10px' }}>2</span>
           </div>,
-          <Popover content={PopoverContent} title="操作"  trigger="hover">
+          <Popover content={PopoverContent} title="操作" trigger="hover">
             <EllipsisOutlined key="ellipsis" />
           </Popover>
         ]}
       >
         <Meta
           avatar={<Avatar src="https://xsgames.co/randomusers/avatar.php?g=pixel" />}
-          title={title} description={content}
+          title={title} description={<div dangerouslySetInnerHTML={{ __html: content }}></div>}
         />
       </Card>
     </>

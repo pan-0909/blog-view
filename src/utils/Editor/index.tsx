@@ -30,13 +30,8 @@ const Editor = ({ handelEditorTitle, handleEditorContent }: { handelEditorTitle:
     };
 
     // 富文本框的值
-    const [editorState, setEditorState] = useState(BraftEditor.createEditorState(null));
-    const handleEditorChange = (newEditorState: any) => {
-        setEditorState(newEditorState);
-        const content = editorState;  //获取富文本的内容
-        handleEditorContent(content)
-    };
-
+    const [editorState, setEditorState] = useState('');
+        handleEditorContent(editorState)
 
     // 上传图片
     const handleImageUpload = (param: any) => {
@@ -67,7 +62,7 @@ const Editor = ({ handelEditorTitle, handleEditorContent }: { handelEditorTitle:
                     <ReactQuill
                         theme='snow'
                         value={editorState}
-                        onChange={handleEditorChange}
+                        onChange={setEditorState}
                         modules={quillOption}
                         className='ql-editor'
                     />

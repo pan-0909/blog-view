@@ -39,9 +39,8 @@ const HeaderNav = () => {
                 <div className="navBigBox">
                     {
                         menuList.map((value) => (
-                            <div>
-                                <Link to={value.key}></Link>
-                                {value.label}
+                            <div onClick={() => {console.log(1111);}}>
+                                <Link to={value.key}>{value.label}</Link>
                             </div>
                         ))
                     }
