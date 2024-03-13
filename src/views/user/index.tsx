@@ -9,7 +9,7 @@ const User = () => {
     };
     const blog = [
         {
-            id: 1,
+            _id: '2',
             title: '标题',
             content: '内容',
             time: "2022-8-12",
@@ -17,14 +17,14 @@ const User = () => {
             label: 'react'
         },
         {
-            id: 2,
+            _id: '1',
             title: '标题',
             content: '内容',
             time: "2022-8-12",
             author: 'pan',
             label: 'react'
         }, {
-            id: 3,
+            _id: '4',
             title: '标题',
             content: '内容',
             time: "2022-8-12",
@@ -64,8 +64,8 @@ const User = () => {
                 <div className='bodyBox'>
                     <Row gutter={10}  >
                         {blog.map((item) => (
-                            <Col span={8} key={item.id} >
-                                <CardComponent title={item.title} content={item.content} />
+                            <Col span={8} key={item._id} >
+                                <CardComponent title={item.title} content={item.content} _id={item._id}/>
                             </Col>
                         ))}
                     </Row>
@@ -82,7 +82,10 @@ const User = () => {
                         <div style={{ display: 'flex', position: 'absolute', top: -60 }}>
                             <img style={{ height: 150, width: 150, borderRadius: '50%' }} src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png" alt="加载失败" />
                             <div >
-                                <div style={{ marginTop: 28, marginLeft: 10, fontSize: 24, fontWeight: 800 }}>nickname</div>
+                                <div style={{display: 'flex',marginTop: 28,justifyContent:"space-between"}}>
+                                <div style={{ marginLeft: 10, fontSize: 24, fontWeight: 800 }}>nickname</div>
+                                <a className='logout'>退出登录</a>
+                                </div>
                                 <div style={{ marginLeft: 10, height: 80 }}>content let we study together</div>
                             </div>
                         </div>

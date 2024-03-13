@@ -12,3 +12,11 @@
     font-size: 16px;
     font-weight: 600;
 }
+.logout {
+    padding-top: 10px;
+    margin-left: 220px;
+}
+.logout:hover {
+    color: red !important;
+    
+}
