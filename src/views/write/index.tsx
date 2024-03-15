@@ -91,7 +91,7 @@ function TypeSelect({ onTypeChange }: TypeSelectProps) {
             <Select
                 mode="multiple"
                 style={{ width: '400px' }}
-                placeholder="Please select"
+                placeholder="选择标签"
                 // defaultValue={['a10', 'c12']}
                 onChange={onTypeChange}
                 options={options}

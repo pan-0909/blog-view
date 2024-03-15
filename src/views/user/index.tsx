@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Card, Row, Col, Button, Tabs, TabsProps, Divider, Tag, Carousel } from 'antd';
 import { PieChartOutlined, MailOutlined, PaperClipOutlined, WechatOutlined, ReadOutlined, GithubOutlined, TwitterOutlined } from '@ant-design/icons';
 import './index.css'
 import CardComponent from "../../component/Card/index.tsx";
+import { userApi } from "@/api/httpApi";
+import UpdateFrom from "./update/index.tsx"
 const User = () => {
     const onChange = (key: string) => {
         console.log(key);
@@ -72,7 +74,41 @@ const User = () => {
                 </div>
             </>),
         },
+
+        {
+            key: '3',
+            label: (
+                <span>
+                    <ReadOutlined />
+                    update
+                </span>
+            ),
+            children: (<>
+                <div className='bodyBox'>
+                    <Row gutter={10}  >
+                       <UpdateFrom></UpdateFrom>
+                    </Row>
+                </div>
+            </>),
+        },
     ];
+    interface UserInfo {
+        username:string,
+        createTime:string,
+        email:string,
+    }
+    const [userInfo,setUserInfo] = useState<UserInfo>({
+        username:'',
+        createTime:'',
+        email:'',
+    })
+    useEffect(()=>{
+        userApi.getUserInfoApi().then((res)=>{
+            console.log(res);
+            setUserInfo(res.data)
+
+        })
+    },[])
 
     return (<>
         <div>
@@ -83,10 +119,10 @@ const User = () => {
                             <img style={{ height: 150, width: 150, borderRadius: '50%' }} src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png" alt="加载失败" />
                             <div >
                                 <div style={{display: 'flex',marginTop: 28,justifyContent:"space-between"}}>
-                                <div style={{ marginLeft: 10, fontSize: 24, fontWeight: 800 }}>nickname</div>
-                                <a className='logout'>退出登录</a>
+                                <div style={{ marginLeft: 10, fontSize: 24, fontWeight: 800 }}>{userInfo.username}</div>
+                                {/* <a className='logout'>退出登录</a> */}
                                 </div>
-                                <div style={{ marginLeft: 10, height: 80 }}>content let we study together</div>
+                                <div style={{ marginLeft: 10, height: 80 }}>{userInfo.createTime}</div>
                             </div>
                         </div>
 

@@ -29,11 +29,12 @@ export default function RegisterForm(props: { changeLogin: (arg0: boolean) => vo
         props.changeLogin(true)
     }
 
-    type FieldType = {
+    interface FieldType  {
         email?: string;
         username?: string;
         password?: string;
-    };
+    }
+    
     return (
         <>
             <Form

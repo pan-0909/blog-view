@@ -2,7 +2,7 @@
  * @Author: pan
  * @Date: 2023-08-24 21:14:59
  * @LastEditors: your name
- * @LastEditTime: 2024-03-13 10:14:27
+ * @LastEditTime: 2024-03-15 12:12:38
  * @Description: 
  * @FilePath: \blog-view\src\views\home\index.tsx
  */
@@ -32,7 +32,7 @@ const Home = () => {
     }
     const [blogList, setBlogList] = useState<Blog[]>([]);
   useEffect(() => {
-    blogApi.getBlogListApi({}).then((res:any) => {
+    blogApi.getBlogListApi().then((res) => {
       setBlogList(res.data as Blog[]);
     });
     

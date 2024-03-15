@@ -2,7 +2,7 @@
  * @Author: panrunjun
  * @Date: 2023-12-16 16:46:51
  * @LastEditors: your name
- * @LastEditTime: 2024-03-05 15:20:03
+ * @LastEditTime: 2024-03-15 12:14:01
  * @Description: const client = new HttpClient('https://api.example.com', 5000);
 
  * @FilePath: \blog-view\src\api\modules\user.ts
@@ -23,6 +23,10 @@ export function loginApi(data:Object) : Promise<any> {
     return http.post("user/login", data);
   }
 
+// 查看用户数据getUserInfo
+export function getUserInfoApi() : Promise<any> {
+  return http.get("user/getUserInfo");
+}
 
 
 
