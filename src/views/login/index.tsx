@@ -1,8 +1,8 @@
 /*
  * @Author: xx
  * @Date: 2023-10-12 23:20:25
- * @LastEditors: your name
- * @LastEditTime: 2024-03-12 10:05:52
+ * @LastEditors: Do not edit
+ * @LastEditTime: 2024-03-18 22:42:16
  * @Description: 
  * @FilePath: \blog-view\src\views\login\index.tsx
  */
@@ -48,6 +48,7 @@ function LoginForm(props: { changeLogin: (arg0: boolean) => void; }) {
                 console.log(res);
                 showSuccess(res.data.msg)
                 localStorage.setItem('token',res.data.token)
+                localStorage.setItem('userId',res.data.userId)
                 setTimeout(()=>{
                     goHome()
                 },1000)

@@ -1,8 +1,8 @@
 /*
  * @Author: pan
  * @Date: 2023-08-24 21:14:59
- * @LastEditors: your name
- * @LastEditTime: 2024-03-15 12:12:38
+ * @LastEditors: Do not edit
+ * @LastEditTime: 2024-03-18 22:59:47
  * @Description: 
  * @FilePath: \blog-view\src\views\home\index.tsx
  */
@@ -49,7 +49,7 @@ const Home = () => {
             </div>
             <div className="titleBox">
                 <div className="title">项目地址</div>
-                <Button type="primary">Get Star ⭐</Button>
+                <Button type="primary"><a href="https://github.com/pan-0909/blog-view">Get Star ⭐</a></Button>
             </div>
         </div>
         <div className='blogBox'>
