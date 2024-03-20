@@ -1,8 +1,8 @@
 /*
  * @Author: panrunjun
  * @Date: 2023-12-16 16:46:51
- * @LastEditors: your name
- * @LastEditTime: 2024-03-13 14:29:03
+ * @LastEditors: Do not edit
+ * @LastEditTime: 2024-03-20 23:00:04
  * @Description: const client = new HttpClient('https://api.example.com', 5000);
 
  * @FilePath: \blog-view\src\api\modules\blog.ts
@@ -35,4 +35,10 @@ export function getBlogListApi(): Promise<any> {
 export function getBlogByIdApi(_id: string): Promise<any> {
   console.log(_id);
   return http.get(`blog/getBlogById/${_id}`);
+}
+
+// 点赞or取消 lickBlog
+export function lickBlogApi(data: Object): Promise<any> {
+  console.log(data);
+  return http.post(`blog/lickBlog`,data);
 }

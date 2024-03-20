@@ -1,8 +1,8 @@
 /*
  * @Author: xx
  * @Date: 2023-08-24 22:41:56
- * @LastEditors: your name
- * @LastEditTime: 2024-03-13 14:09:34
+ * @LastEditors: Do not edit
+ * @LastEditTime: 2024-03-20 23:08:41
  * @Description: card卡片
  * @FilePath: \blog-view\src\component\Card\index.tsx
  */
@@ -10,9 +10,12 @@ import React from 'react';
 import { Card, Avatar, Popover, Button } from 'antd';
 import { EllipsisOutlined, LikeOutlined, CommentOutlined } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
+import { blogApi } from '@/api/httpApi';
+import { useMessage } from "@/hooks/useMessage";
 
-const CardComponent = ({ title, content,_id }: { title: string, content: string ,_id: string }) => {
+const CardComponent = ({ title, content,_id,likes }: { title: string, content: string ,_id: string,likes:number }) => {
   const navigate = useNavigate()
+  const { showSuccess, showError } = useMessage();
   const { Meta } = Card;
 
   /**
@@ -21,6 +24,21 @@ const CardComponent = ({ title, content,_id }: { title: string, content: string 
    */
   const getDetail = (_id: string) => {
     navigate('/BlogDetail',{ state: { _id: _id } })
+  }
+
+  // 点赞方法
+  const likeClick = (event:any,id:string)=>{
+    // 阻止冒泡事件
+    event.stopPropagation();
+    blogApi.lickBlogApi({blogId:id}).then(res=>{
+      console.log(res);
+      if(res.status===200){
+        showSuccess(res.data.msg)
+      }else{
+        showError(res.data.msg)
+      }
+    })
+    
   }
 
   /**
@@ -41,9 +59,9 @@ const CardComponent = ({ title, content,_id }: { title: string, content: string 
         style={{ margin: '5px 0px' }}
         cover={<img alt="example" src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png" style={{ height: '170px' }} />}
         actions={[
-          <div>
+          <div onClick={(event:any)=>{likeClick(event,_id)}}>
             <LikeOutlined />
-            <span style={{ marginLeft: '7px', fontSize: '10px' }}>2</span>
+            <span style={{ marginLeft: '7px', fontSize: '10px' }}>{likes}</span>
           </div>,
           <div>
             <CommentOutlined />
