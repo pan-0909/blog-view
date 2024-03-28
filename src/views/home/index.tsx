@@ -2,7 +2,7 @@
  * @Author: pan
  * @Date: 2023-08-24 21:14:59
  * @LastEditors: Do not edit
- * @LastEditTime: 2024-03-20 23:11:37
+ * @LastEditTime: 2024-03-28 17:45:07
  * @Description: 
  * @FilePath: \blog-view\src\views\home\index.tsx
  */
@@ -14,14 +14,17 @@ import NavigateCompont from '../../component/Menu/List'
 // import BlogDetail from '../blogDetail/index.tsx'
 import CardComponent from "@/component/Card/index";
 import { blogApi } from "@/api/httpApi";
-import  { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
+import { useAppSelector, useAppDispatch } from '@/hooks/useStore'
+import { increment, selectCount } from "@/store/modules/counter/counterSlice";
+import { fetchBlogList, setBlogList } from "@/store/modules/blog/blogSlice";
 const Home = () => {
-    
+
     interface Blog {
         _id: string,
-        title:string,
-        label:Array<string>,
-        content:string,
+        title: string,
+        label: Array<string>,
+        content: string,
         createTime: string,
         author: string,
         userId: number,
@@ -30,15 +33,15 @@ const Home = () => {
         collects: number,
         collectedBy: object
     }
-    const [blogList, setBlogList] = useState<Blog[]>([]);
-  useEffect(() => {
-    blogApi.getBlogListApi().then((res) => {
-      setBlogList(res.data as Blog[]);
-    });
-    
-  }, []);
+    // const [blogList, setBlogList] = useState<Blog[]>([]);
+    useEffect(() => {
+        dispatch(fetchBlogList());
+      }, []);
 
-  console.log(blogList);
+    const dispatch = useAppDispatch()
+    const count = useAppSelector(selectCount)
+
+    const blogList = useAppSelector(setBlogList)
     return (<>
         <div className="header">
             <div className="navBox">
@@ -53,12 +56,20 @@ const Home = () => {
             </div>
         </div>
         <div className='blogBox'>
+            {count}
+            <Button
+                aria-label="Decrement value"
+                onClick={() => dispatch(increment())}
+            >
+                +
+            </Button>
             {/* <Router /> */}
             {/* <h1>文章列表</h1> */}
             <Row gutter={10}  >
-                {blogList.map((item:Blog) => (
+
+                {blogList.map((item: Blog) => (
                     <Col span={6} key={item._id} >
-                        <CardComponent title={item.title} content={item.content} _id={item._id} likes={item.likes}/>
+                        <CardComponent title={item.title} content={item.content} _id={item._id} likes={item.likes} />
                     </Col>
                 ))}
             </Row>
