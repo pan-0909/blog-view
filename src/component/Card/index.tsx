@@ -2,7 +2,7 @@
  * @Author: xx
  * @Date: 2023-08-24 22:41:56
  * @LastEditors: Do not edit
- * @LastEditTime: 2024-03-28 17:59:59
+ * @LastEditTime: 2024-03-28 20:47:15
  * @Description: card卡片
  * @FilePath: \blog-view\src\component\Card\index.tsx
  */
@@ -15,15 +15,12 @@ import { useMessage } from "@/hooks/useMessage";
 import { decreLike, increLike } from '@/store/modules/blog/blogSlice';
 import { useAppDispatch } from '@/hooks/useStore';
 
-const CardComponent = ({ title, content, _id, likes }: { title: string, content: string, _id: string, likes: number }) => {
+const CardComponent = ({ title, content, _id, likes ,commentNum}: { title: string, content: string, _id: string, likes: number,commentNum:number }) => {
   const navigate = useNavigate()
   // 使用redux
   const dispatch = useAppDispatch()
   const { showSuccess, showError } = useMessage();
   const { Meta } = Card;
-
-
-
 
   /**
    * @description: 获取详情携带id
@@ -82,7 +79,7 @@ const CardComponent = ({ title, content, _id, likes }: { title: string, content:
           </div>,
           <div>
             <CommentOutlined />
-            <span style={{ marginLeft: '7px', fontSize: '10px' }}>2</span>
+            <span style={{ marginLeft: '7px', fontSize: '10px' }}>{commentNum}</span>
           </div>,
           <Popover content={PopoverContent} title="操作" trigger="hover">
             <EllipsisOutlined key="ellipsis" />

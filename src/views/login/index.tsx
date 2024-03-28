@@ -2,7 +2,7 @@
  * @Author: xx
  * @Date: 2023-10-12 23:20:25
  * @LastEditors: Do not edit
- * @LastEditTime: 2024-03-18 22:42:16
+ * @LastEditTime: 2024-03-28 19:40:11
  * @Description: 
  * @FilePath: \blog-view\src\views\login\index.tsx
  */
@@ -49,6 +49,7 @@ function LoginForm(props: { changeLogin: (arg0: boolean) => void; }) {
                 showSuccess(res.data.msg)
                 localStorage.setItem('token',res.data.token)
                 localStorage.setItem('userId',res.data.userId)
+                localStorage.setItem('userInfo',JSON.stringify(res.data.userInfo))
                 setTimeout(()=>{
                     goHome()
                 },1000)

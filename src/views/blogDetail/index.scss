@@ -1,0 +1,22 @@
+.label {
+    margin-left: 5px;
+    color: #1a8dff;
+}
+
+/* 评论区 */
+.commentList {
+    .userInfo {
+        display: flex;
+        align-items: center;
+
+        div {
+            margin-left: 10px;
+        }
+
+        .createTime{
+            margin-left: 20px;
+            color: gray;
+            font-size: 12px;
+        }
+    }
+}

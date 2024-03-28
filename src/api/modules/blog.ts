@@ -2,7 +2,7 @@
  * @Author: panrunjun
  * @Date: 2023-12-16 16:46:51
  * @LastEditors: Do not edit
- * @LastEditTime: 2024-03-20 23:00:04
+ * @LastEditTime: 2024-03-28 19:20:22
  * @Description: const client = new HttpClient('https://api.example.com', 5000);
 
  * @FilePath: \blog-view\src\api\modules\blog.ts
@@ -41,4 +41,10 @@ export function getBlogByIdApi(_id: string): Promise<any> {
 export function lickBlogApi(data: Object): Promise<any> {
   console.log(data);
   return http.post(`blog/lickBlog`,data);
+}
+
+// 根据博客id插入评论
+export function getcommentListByBlogIdApi(data: Object): Promise<any> {
+  console.log(data);
+  return http.post(`blog/getcommentListByBlogId`,data); 
 }
