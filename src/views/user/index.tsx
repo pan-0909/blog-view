@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { Card, Row, Col, Button, Tabs, TabsProps, Divider, Tag, Carousel } from 'antd';
 import { PieChartOutlined, MailOutlined, PaperClipOutlined, WechatOutlined, ReadOutlined, GithubOutlined, TwitterOutlined } from '@ant-design/icons';
 import './index.css'
-import CardComponent from "../../component/Card/index.tsx";
+import CardComponent from "../../component/Card/index";
 import { userApi } from "@/api/httpApi";
-import UpdateFrom from "./update/index.tsx"
+import UpdateFrom from "./update/index"
 const User = () => {
     const onChange = (key: string) => {
         console.log(key);
@@ -96,17 +96,25 @@ const User = () => {
         username:string,
         createTime:string,
         email:string,
+        github:string,
+        introduction:string,
+        label:Array<string>,
+        faceImg:string,
     }
     const [userInfo,setUserInfo] = useState<UserInfo>({
         username:'',
         createTime:'',
         email:'',
+        github:'',
+        faceImg:'',
+        introduction:'',
+        label:[]
+
     })
     useEffect(()=>{
         userApi.getUserInfoApi().then((res)=>{
             console.log(res);
             setUserInfo(res.data)
-
         })
     },[])
 
@@ -116,13 +124,13 @@ const User = () => {
                 <Col span={8}>
                     <Card style={{ margin: 20, marginTop: 80 }}>
                         <div style={{ display: 'flex', position: 'absolute', top: -60 }}>
-                            <img style={{ height: 150, width: 150, borderRadius: '50%' }} src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png" alt="加载失败" />
+                            <img style={{ height: 150, width: 150, borderRadius: '50%' }} src={userInfo.faceImg} alt="加载失败" />
                             <div >
                                 <div style={{display: 'flex',marginTop: 28,justifyContent:"space-between"}}>
                                 <div style={{ marginLeft: 10, fontSize: 24, fontWeight: 800 }}>{userInfo.username}</div>
                                 {/* <a className='logout'>退出登录</a> */}
                                 </div>
-                                <div style={{ marginLeft: 10, height: 80 }}>{userInfo.createTime}</div>
+                                <div style={{ marginLeft: 10, height: 80 }}>{userInfo.introduction}</div>
                             </div>
                         </div>
 
@@ -144,7 +152,7 @@ const User = () => {
                         <Divider />
                         <div className='iconBox'>
                             <GithubOutlined />
-                            <span className='iconSpan'>www.github.com</span>
+                            <span className='iconSpan'>{userInfo.github}</span>
                         </div>
                         <div className='iconBox'>
                             <TwitterOutlined />
@@ -156,7 +164,7 @@ const User = () => {
                         </div>
                         <div className='iconBox'>
                             <MailOutlined />
-                            <span className='iconSpan'>1957457389@qq.com</span>
+                            <span className='iconSpan'>{userInfo.email}</span>
                         </div>
                         <div className='iconBox'>
                             <PaperClipOutlined />

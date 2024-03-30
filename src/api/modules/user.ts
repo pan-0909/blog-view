@@ -1,8 +1,8 @@
 /*
  * @Author: panrunjun
  * @Date: 2023-12-16 16:46:51
- * @LastEditors: your name
- * @LastEditTime: 2024-03-15 12:14:01
+ * @LastEditors: Do not edit
+ * @LastEditTime: 2024-03-30 16:38:14
  * @Description: const client = new HttpClient('https://api.example.com', 5000);
 
  * @FilePath: \blog-view\src\api\modules\user.ts
@@ -26,6 +26,11 @@ export function loginApi(data:Object) : Promise<any> {
 // 查看用户数据getUserInfo
 export function getUserInfoApi() : Promise<any> {
   return http.get("user/getUserInfo");
+}
+
+//  修改用户数据
+export function updateUserInfoApi(data:Object) : Promise<any> {
+  return http.post("user/updateUserInfo", data);
 }
 
 

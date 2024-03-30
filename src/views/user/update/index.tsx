@@ -2,7 +2,7 @@
  * @Author: xx
  * @Date: 2024-03-18 22:21:16
  * @LastEditors: Do not edit
- * @LastEditTime: 2024-03-30 16:04:02
+ * @LastEditTime: 2024-03-30 17:05:02
  * @Description: 
  * @FilePath: \blog-view\src\views\user\update\index.tsx
  */
@@ -20,6 +20,7 @@ import PModel from '@/component/PModel';
 import { typePModel } from '@/types/PModel';
 import { useMessage } from '@/hooks/useMessage';
 import UploadOne from '@/component/Upload/UploadOne';
+import { updateUserInfoApi } from '@/api/modules/user';
 const { TextArea } = Input;
 const normFile = (e: { fileList: any; }) => {
   if (Array.isArray(e)) {
@@ -58,14 +59,29 @@ const UpdateForm: React.FC = () => {
     localStorage.removeItem('token');
     navigate('/login');
   }
-
   const [imageUrl, setImageUrl] = useState('');
-   // 定义回调函数，用于接收子组件传递的头像url
-   const handleImgUrlChange = (value:string) => {
+  // 定义回调函数，用于接收子组件传递的头像url
+  const handleImgUrlChange = (value: string) => {
     console.log(value);
     setImageUrl(value);
   };
 
+  type FormType = {
+    username: string;
+    github: string;
+    email: string;
+    label: Array<string>;
+    introduction: string;
+    faceImg: string;
+  };
+  const onFinish = (values: FormType) => {
+    console.log(values);
+    values.faceImg = imageUrl
+    updateUserInfoApi(values).then(res=>{
+      console.log(res);
+      
+    })
+  }
   return (
     <>
 
@@ -73,31 +89,32 @@ const UpdateForm: React.FC = () => {
         labelCol={{ span: 4 }}
         wrapperCol={{ span: 14 }}
         layout="horizontal"
+        onFinish={onFinish}
         style={{ width: 800 }}
       >
-        <Form.Item label="username">
+        <Form.Item<FormType> label="username1" name="username">
           <Input />
         </Form.Item>
-        <Form.Item label="github">
+        <Form.Item<FormType> label="github" name="github">
           <Input />
         </Form.Item>
-        <Form.Item label="email">
+        <Form.Item<FormType> label="email" name="email">
           <Input />
         </Form.Item>
-        <Form.Item label="标签">
+        <Form.Item<FormType> label="标签" name="label">
           <Select
             mode="multiple"
             options={options}>
           </Select>
         </Form.Item>
-        <Form.Item label="个人介绍">
+        <Form.Item<FormType> label="个人介绍" name="introduction">
           <TextArea rows={6} />
         </Form.Item>
-        <Form.Item label="头像" valuePropName="fileList" getValueFromEvent={normFile}>
-         <UploadOne  onImgUrlChange={handleImgUrlChange}/>
+        <Form.Item<FormType> label="头像" valuePropName="fileList" getValueFromEvent={normFile} name="faceImg">
+          <UploadOne onImgUrlChange={handleImgUrlChange} />
         </Form.Item>
-        <Form.Item >
-          <Button type='link'>确 定</Button>
+        <Form.Item>
+          <Button type='link' htmlType="submit">确 定</Button>
           <Button type='link' danger onClick={showModel}>退出登录</Button>
         </Form.Item>
       </Form>
