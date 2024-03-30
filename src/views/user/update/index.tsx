@@ -1,5 +1,12 @@
+/*
+ * @Author: xx
+ * @Date: 2024-03-18 22:21:16
+ * @LastEditors: Do not edit
+ * @LastEditTime: 2024-03-30 16:04:02
+ * @Description: 
+ * @FilePath: \blog-view\src\views\user\update\index.tsx
+ */
 import React, { useRef, useState } from 'react';
-import { PlusOutlined } from '@ant-design/icons';
 import {
   Button,
   Form,
@@ -8,9 +15,11 @@ import {
   SelectProps,
   Upload,
 } from 'antd';
-import {  useNavigate  } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import PModel from '@/component/PModel';
-import {typePModel} from '@/model/PModel';
+import { typePModel } from '@/types/PModel';
+import { useMessage } from '@/hooks/useMessage';
+import UploadOne from '@/component/Upload/UploadOne';
 const { TextArea } = Input;
 const normFile = (e: { fileList: any; }) => {
   if (Array.isArray(e)) {
@@ -18,7 +27,6 @@ const normFile = (e: { fileList: any; }) => {
   }
   return e?.fileList;
 };
-
 
 const options: SelectProps['options'] = [];
 options.push(
@@ -32,29 +40,35 @@ options.push(
   }
 );
 // 继承类型
-interface ChildRef extends typePModel{
-    showModal():void;
+interface ChildRef extends typePModel {
+  showModal(): void;
 }
 const UpdateForm: React.FC = () => {
-const navigate = useNavigate();
-const childRef = useRef<ChildRef>();
-function showModel(){
+  // const { showSuccess, showError } = useMessage();
+  const navigate = useNavigate();
+  const childRef = useRef<ChildRef>();
+  function showModel() {
     if (childRef.current) {
       childRef.current.showModal();
+    }
   }
-}
 
-function logout() {
-  console.log('logout');
-  localStorage.removeItem('token');
-  navigate('/login');
-}
+  function logout() {
+    console.log('logout');
+    localStorage.removeItem('token');
+    navigate('/login');
+  }
 
- 
+  const [imageUrl, setImageUrl] = useState('');
+   // 定义回调函数，用于接收子组件传递的头像url
+   const handleImgUrlChange = (value:string) => {
+    console.log(value);
+    setImageUrl(value);
+  };
 
   return (
     <>
-    
+
       <Form
         labelCol={{ span: 4 }}
         wrapperCol={{ span: 14 }}
@@ -80,12 +94,7 @@ function logout() {
           <TextArea rows={6} />
         </Form.Item>
         <Form.Item label="头像" valuePropName="fileList" getValueFromEvent={normFile}>
-          <Upload action="/upload.do" listType="picture-card">
-            <button style={{ border: 0, background: 'none' }} type="button">
-              <PlusOutlined />
-              <div style={{ marginTop: 8 }}>上传头像</div>
-            </button>
-          </Upload>
+         <UploadOne  onImgUrlChange={handleImgUrlChange}/>
         </Form.Item>
         <Form.Item >
           <Button type='link'>确 定</Button>

@@ -12,8 +12,8 @@ import 'braft-editor/dist/index.css';
 import { blogApi } from "../../api/httpApi";
 import '../../api/httpApi.ts'
 import { useState } from 'react';
-import HeaderNav from '@/component/HeaderNav/index.tsx';
-import {useMessage} from '@/hooks/useMessage.ts';
+import HeaderNav from '@/component/HeaderNav/index';
+import {useMessage} from '@/hooks/useMessage';
 import { useNavigate } from 'react-router-dom';
 function Write() {
     const { showSuccess, showError } = useMessage();
