@@ -2,7 +2,7 @@
  * @Author: xx
  * @Date: 2024-03-18 22:21:16
  * @LastEditors: Do not edit
- * @LastEditTime: 2024-04-01 16:29:18
+ * @LastEditTime: 2024-04-01 18:39:30
  * @Description: 
  * @FilePath: \blog-view\src\views\user\update\index.tsx
  */
@@ -59,6 +59,8 @@ const UpdateForm = ({handleUpdateUserInfo,userInfo}:{handleUpdateUserInfo:Functi
   function logout() {
     console.log('logout');
     localStorage.removeItem('token');
+    localStorage.removeItem('userInfo');
+    localStorage.removeItem('userId');
     navigate('/login');
   }
   const [imageUrl, setImageUrl] = useState('');

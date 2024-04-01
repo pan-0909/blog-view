@@ -61,6 +61,7 @@ function LoginForm(props: { changeLogin: (arg0: boolean) => void; }) {
                     goHome()
                 }, 1000)
             } else {
+                console.log(res);
                 showError(res.data.msg)
             }
         })

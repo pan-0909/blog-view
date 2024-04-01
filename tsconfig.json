@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     // 允许在导入语句中使用以 ".tsx" 结尾的文件扩展名
-    "allowImportingTsExtensions": true,
+    // "allowImportingTsExtensions": true,
     "skipLibCheck": true,
     // 启用使用默认导出的模块的简化导入语法
     "esModuleInterop": true,

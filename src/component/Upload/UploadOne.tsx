@@ -2,7 +2,7 @@
  * @Author: xx
  * @Date: 2024-03-30 11:49:52
  * @LastEditors: Do not edit
- * @LastEditTime: 2024-04-01 16:30:02
+ * @LastEditTime: 2024-04-01 18:47:57
  * @Description: 
  * @FilePath: \blog-view\src\component\Upload\UploadOne.tsx
  */
@@ -16,6 +16,7 @@ import { PlusOutlined, LoadingOutlined } from '@ant-design/icons';
 
 const UploadOne = ({ onImgUrlChange,initailImg }: { onImgUrlChange: Function,initailImg:string }) => {
     const [imageUrl, setImageUrl] = useState(initailImg); // 用于存储上传成功后的图片地址
+    onImgUrlChange(imageUrl)
     const [loading, setLoading] = useState(false);  // 用户上传图片的加载
 
     const { showSuccess, showError } = useMessage();
