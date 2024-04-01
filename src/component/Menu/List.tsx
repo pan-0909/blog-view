@@ -2,7 +2,7 @@
  * @Author: pan
  * @Date: 2023-08-24 22:02:11
  * @LastEditors: Do not edit
- * @LastEditTime: 2024-03-12 20:54:01
+ * @LastEditTime: 2024-04-01 19:08:18
  * @Description: menu列表组件
  * @FilePath: \blog-view\src\component\Menu\List.tsx
  */
@@ -29,18 +29,15 @@ class List extends React.Component<ListProps> {
           key: '/forum',
         },
         {
-          label: '个人中心',
-          key: '/user',
-        },
-        {
           label: '创作中心',
           key: '/write',
         },
         {
-          label: '登录注册',
-          key: '/login',
+          label: localStorage.getItem("token")&&localStorage.getItem("userInfo")?'个人中心':'登录注册',
+          key: localStorage.getItem("token")&&localStorage.getItem("userInfo")?'/user':'/login',
         },
       ];
+
  
     onClick = (e:any) => {
         //注意this指向问题，采用箭头函数this就指向当前组件
