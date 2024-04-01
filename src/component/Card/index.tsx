@@ -2,7 +2,7 @@
  * @Author: xx
  * @Date: 2023-08-24 22:41:56
  * @LastEditors: Do not edit
- * @LastEditTime: 2024-03-28 20:47:15
+ * @LastEditTime: 2024-04-01 23:10:34
  * @Description: card卡片
  * @FilePath: \blog-view\src\component\Card\index.tsx
  */
@@ -91,6 +91,7 @@ const CardComponent = ({ title, content, _id, likes ,commentNum}: { title: strin
           title={title} description={<div dangerouslySetInnerHTML={{ __html: content }}></div>}
         />
       </Card>
+     
     </>
   )
 

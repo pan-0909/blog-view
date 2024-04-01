@@ -2,53 +2,45 @@
  * @Author: xx
  * @Date: 2024-03-18 22:21:16
  * @LastEditors: Do not edit
- * @LastEditTime: 2024-04-01 19:36:47
+ * @LastEditTime: 2024-04-01 23:24:37
  * @Description: 
  * @FilePath: \blog-view\src\views\user\index.tsx
  */
 import React, { useEffect, useState } from 'react';
-import { Card, Row, Col, Button, Tabs, TabsProps, Divider, Tag, Carousel } from 'antd';
+import { Card, Row, Col, Button, Tabs, TabsProps, Divider, Tag, Carousel, Pagination } from 'antd';
 import { PieChartOutlined, MailOutlined, PaperClipOutlined, WechatOutlined, ReadOutlined, GithubOutlined, TwitterOutlined } from '@ant-design/icons';
 import './index.css'
 import CardComponent from "../../component/Card/index";
 import { userApi } from "@/api/httpApi";
 import UpdateForm from "./update/index"
 import { UserInfo } from '@/types/user';
-import reactPng from '@/assets/icons/react.png' 
+import reactPng from '@/assets/icons/react.png'
+import { getBlogByUserIdApi } from '@/api/modules/blog';
+import { Blog } from '@/types/blog';
 
 const User = () => {
     const [userInfo, setUserInfo] = useState(JSON.parse(localStorage.getItem('userInfo') || '') as UserInfo);
+    const [blogList, setBlogList] = useState([]);
+    const [totalBlogs, setTotalBlogs] = useState(0);
     const updateUserInfo = () => {
         setUserInfo(JSON.parse(localStorage.getItem("userInfo") as string))
+    }
+
+    // 获取个人博客
+    const getBlogByUserId = () => {
+        getBlogByUserIdApi({}).then(res => {
+            console.log(res);
+            setBlogList(res.data.blogList)
+            setTotalBlogs(res.data.totalBlogs)
+        })
     }
     const onChange = (key: string) => {
         console.log(key);
     };
-    const blog = [
-        {
-            _id: '2',
-            title: '标题',
-            content: '内容',
-            time: "2022-8-12",
-            author: 'pan',
-            label: 'react'
-        },
-        {
-            _id: '1',
-            title: '标题',
-            content: '内容',
-            time: "2022-8-12",
-            author: 'pan',
-            label: 'react'
-        }, {
-            _id: '4',
-            title: '标题',
-            content: '内容',
-            time: "2022-8-12",
-            author: 'pan',
-            label: 'react'
-        },
-    ];
+
+    const onChangePage = () => {
+        console.log('修改页码');
+    }
     const items: TabsProps['items'] = [
         {
             key: '1',
@@ -80,12 +72,15 @@ const User = () => {
             children: (<>
                 <div className='bodyBox'>
                     <Row gutter={10}  >
-                        {blog.map((item) => (
+                        {blogList.map((item:Blog) => (
                             <Col span={8} key={item._id} >
-                                <CardComponent title={item.title} content={item.content} _id={item._id} />
+                                <CardComponent title={item.title} content={item.content} _id={item._id} commentNum={item.commentNum} likes={item.likes}/>
                             </Col>
                         ))}
                     </Row>
+
+                    <Divider />
+                    <Pagination onChange={onChangePage} total={totalBlogs} style={{display:'flex',justifyContent:'center'}}/>
                 </div>
             </>),
         },
@@ -110,6 +105,7 @@ const User = () => {
 
     useEffect(() => {
         // setUserInfo(JSON.parse(localStorage.getItem("userInfo") as string))
+        getBlogByUserId()
     }, [])
 
     return (<>
@@ -132,7 +128,7 @@ const User = () => {
                         <div style={{ display: 'flex', marginTop: 10 }}>
                             <div >
                                 <span >博客数：</span>
-                                <span className='spanNumber'>12</span>
+                                <span className='spanNumber'>{totalBlogs}</span>
                             </div>
                             <div style={{ marginLeft: 20 }}>
                                 <span>粉丝数：</span>
@@ -173,7 +169,7 @@ const User = () => {
                         </Tag>
                         <Tag color="#55acee">
                             <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                                <img src={reactPng} alt="react" style={{height:'20px'}}  />
+                                <img src={reactPng} alt="react" style={{ height: '20px' }} />
                                 <span>React.js</span>
                             </div>
                         </Tag>
