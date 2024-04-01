@@ -2,7 +2,7 @@
  * @Author: xx
  * @Date: 2024-03-18 22:21:16
  * @LastEditors: Do not edit
- * @LastEditTime: 2024-03-30 17:05:02
+ * @LastEditTime: 2024-04-01 16:29:18
  * @Description: 
  * @FilePath: \blog-view\src\views\user\update\index.tsx
  */
@@ -21,6 +21,7 @@ import { typePModel } from '@/types/PModel';
 import { useMessage } from '@/hooks/useMessage';
 import UploadOne from '@/component/Upload/UploadOne';
 import { updateUserInfoApi } from '@/api/modules/user';
+import { UserInfo } from '@/types/user';
 const { TextArea } = Input;
 const normFile = (e: { fileList: any; }) => {
   if (Array.isArray(e)) {
@@ -44,8 +45,9 @@ options.push(
 interface ChildRef extends typePModel {
   showModal(): void;
 }
-const UpdateForm: React.FC = () => {
-  // const { showSuccess, showError } = useMessage();
+const UpdateForm = ({handleUpdateUserInfo,userInfo}:{handleUpdateUserInfo:Function,userInfo:UserInfo}) => {
+  const { showSuccess, showError } = useMessage();
+  
   const navigate = useNavigate();
   const childRef = useRef<ChildRef>();
   function showModel() {
@@ -79,9 +81,16 @@ const UpdateForm: React.FC = () => {
     values.faceImg = imageUrl
     updateUserInfoApi(values).then(res=>{
       console.log(res);
-      
+      if(res.status===200){
+        localStorage.setItem("userInfo",JSON.stringify(values))
+        handleUpdateUserInfo()
+        showSuccess(res.data.msg)
+      }else{
+        showError(res.data.msg)
+      }
     })
   }
+
   return (
     <>
 
@@ -91,9 +100,18 @@ const UpdateForm: React.FC = () => {
         layout="horizontal"
         onFinish={onFinish}
         style={{ width: 800 }}
+
+        // 设置初始值
+        initialValues={{
+          username:userInfo.username,
+          github:userInfo.github,
+          email:userInfo.email,
+          label:userInfo.label,
+          introduction:userInfo.introduction,
+        }}
       >
-        <Form.Item<FormType> label="username1" name="username">
-          <Input />
+        <Form.Item<FormType> label="username" name="username">
+          <Input/>
         </Form.Item>
         <Form.Item<FormType> label="github" name="github">
           <Input />
@@ -111,8 +129,8 @@ const UpdateForm: React.FC = () => {
           <TextArea rows={6} />
         </Form.Item>
         <Form.Item<FormType> label="头像" valuePropName="fileList" getValueFromEvent={normFile} name="faceImg">
-          <UploadOne onImgUrlChange={handleImgUrlChange} />
-        </Form.Item>
+          <UploadOne onImgUrlChange={handleImgUrlChange} initailImg={userInfo.faceImg}/>
+        </Form.Item>  
         <Form.Item>
           <Button type='link' htmlType="submit">确 定</Button>
           <Button type='link' danger onClick={showModel}>退出登录</Button>
@@ -125,4 +143,4 @@ const UpdateForm: React.FC = () => {
 
 
 
-export default () => <UpdateForm />;
+export default UpdateForm;

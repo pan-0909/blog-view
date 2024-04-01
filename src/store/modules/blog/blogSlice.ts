@@ -2,13 +2,13 @@
  * @Author: panrunjun
  * @Date: 2024-03-28 13:06:04
  * @LastEditors: Do not edit
- * @LastEditTime: 2024-03-30 15:53:47
+ * @LastEditTime: 2024-03-30 22:08:25
  * @Description: 博客的state
  * @FilePath: \blog-view\src\store\modules\blog\blogSlice.ts
  */
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { RootState, AppThunk } from '@/store'
-import { blogApi } from '@/api/httpApi'
+import { getBlogListApi } from '@/api/modules/blog'
 
 export interface Blog {
     _id: string,
@@ -37,7 +37,7 @@ const initialState: BlogState = {
 // 获取博客初始值
 // 定义一个异步的 thunk action creator
 export const fetchBlogList = createAsyncThunk('blogs/fetchBlogList', async () => {
-    const response = await blogApi.getBlogListApi();
+    const response = await getBlogListApi();
     return response.data;
 });
 
@@ -78,6 +78,7 @@ export const blogSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder
+        // 当 fetchBlogList 的异步操作成功完成时，执行使用新的博客数据替换现有的状态
             .addCase(fetchBlogList.fulfilled, (state, action) => {
                 state.blogList = action.payload; // 使用新的博客数据替换现有的状态
             });

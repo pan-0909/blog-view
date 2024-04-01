@@ -1,11 +1,24 @@
+/*
+ * @Author: xx
+ * @Date: 2024-03-18 22:21:16
+ * @LastEditors: Do not edit
+ * @LastEditTime: 2024-04-01 16:17:42
+ * @Description: 
+ * @FilePath: \blog-view\src\views\user\index.tsx
+ */
 import React, { useEffect, useState } from 'react';
 import { Card, Row, Col, Button, Tabs, TabsProps, Divider, Tag, Carousel } from 'antd';
 import { PieChartOutlined, MailOutlined, PaperClipOutlined, WechatOutlined, ReadOutlined, GithubOutlined, TwitterOutlined } from '@ant-design/icons';
 import './index.css'
 import CardComponent from "../../component/Card/index";
 import { userApi } from "@/api/httpApi";
-import UpdateFrom from "./update/index"
+import UpdateForm from "./update/index"
+import { UserInfo } from '@/types/user';
 const User = () => {
+    const [userInfo, setUserInfo] = useState(JSON.parse(localStorage.getItem('userInfo') || '') as UserInfo);
+    const updateUserInfo = ()=> {
+        setUserInfo(JSON.parse(localStorage.getItem("userInfo") as string))
+    }
     const onChange = (key: string) => {
         console.log(key);
     };
@@ -86,36 +99,15 @@ const User = () => {
             children: (<>
                 <div className='bodyBox'>
                     <Row gutter={10}  >
-                       <UpdateFrom></UpdateFrom>
+                       <UpdateForm handleUpdateUserInfo={updateUserInfo} userInfo={userInfo}></UpdateForm>
                     </Row>
                 </div>
             </>),
         },
     ];
-    interface UserInfo {
-        username:string,
-        createTime:string,
-        email:string,
-        github:string,
-        introduction:string,
-        label:Array<string>,
-        faceImg:string,
-    }
-    const [userInfo,setUserInfo] = useState<UserInfo>({
-        username:'',
-        createTime:'',
-        email:'',
-        github:'',
-        faceImg:'',
-        introduction:'',
-        label:[]
-
-    })
+  
     useEffect(()=>{
-        userApi.getUserInfoApi().then((res)=>{
-            console.log(res);
-            setUserInfo(res.data)
-        })
+        // setUserInfo(JSON.parse(localStorage.getItem("userInfo") as string))
     },[])
 
     return (<>

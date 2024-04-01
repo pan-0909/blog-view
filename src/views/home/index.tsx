@@ -2,7 +2,7 @@
  * @Author: pan
  * @Date: 2023-08-24 21:14:59
  * @LastEditors: Do not edit
- * @LastEditTime: 2024-03-28 20:46:56
+ * @LastEditTime: 2024-03-30 22:41:40
  * @Description: 
  * @FilePath: \blog-view\src\views\home\index.tsx
  */
@@ -16,13 +16,19 @@ import CardComponent from "@/component/Card/index";
 import { useState, useEffect } from 'react';
 import { useAppSelector, useAppDispatch } from '@/hooks/useStore'
 import { Blog, fetchBlogList, setBlogList } from "@/store/modules/blog/blogSlice";
+import { store } from "@/store";
+import { setUserInfo } from "@/store/modules/user/userSlice";
+// import { setUserInfo } from "@/store/modules/user/userSlice";
 const Home = () => {
-
+    const dispatch = useAppDispatch()
     useEffect(() => {
         dispatch(fetchBlogList());
       }, []);
-    const dispatch = useAppDispatch()
+
+
     const blogList = useAppSelector(setBlogList)
+    const userInfo = useAppSelector(setUserInfo)
+    console.log(userInfo,"userInfo1");
     return (<>
         <div className="header">
             <div className="navBox">

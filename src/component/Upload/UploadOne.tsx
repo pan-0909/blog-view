@@ -1,3 +1,11 @@
+/*
+ * @Author: xx
+ * @Date: 2024-03-30 11:49:52
+ * @LastEditors: Do not edit
+ * @LastEditTime: 2024-04-01 16:30:02
+ * @Description: 
+ * @FilePath: \blog-view\src\component\Upload\UploadOne.tsx
+ */
 import { uploadApi } from '@/api/modules/upload';
 import { useMessage } from '@/hooks/useMessage';
 import { Upload } from 'antd';
@@ -6,8 +14,8 @@ import { PlusOutlined, LoadingOutlined } from '@ant-design/icons';
 
 
 
-const UploadOne = ({ onImgUrlChange }: { onImgUrlChange: Function }) => {
-    const [imageUrl, setImageUrl] = useState(''); // 用于存储上传成功后的图片地址
+const UploadOne = ({ onImgUrlChange,initailImg }: { onImgUrlChange: Function,initailImg:string }) => {
+    const [imageUrl, setImageUrl] = useState(initailImg); // 用于存储上传成功后的图片地址
     const [loading, setLoading] = useState(false);  // 用户上传图片的加载
 
     const { showSuccess, showError } = useMessage();

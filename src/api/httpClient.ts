@@ -42,7 +42,7 @@ interface ResponseType {
 service.interceptors.response.use((response: ResponseType) => {
   //2xx 范围内的状态码都会触发该函数。
   //对响应数据做点什么
-  console.log(response, 'response');
+  // console.log(response, 'response');
   const { data, status, statusText } = response;
   const res = {
     data,
