@@ -2,7 +2,7 @@
  * @Author: pan
  * @Date: 2023-08-24 22:02:11
  * @LastEditors: Do not edit
- * @LastEditTime: 2024-04-01 19:08:18
+ * @LastEditTime: 2024-04-02 16:59:57
  * @Description: menu列表组件
  * @FilePath: \blog-view\src\component\Menu\List.tsx
  */
@@ -24,10 +24,10 @@ class List extends React.Component<ListProps> {
           label: '首页',
           key: '/home',
         },
-        {
-          label: '论坛中心',
-          key: '/forum',
-        },
+        // {
+        //   label: '论坛中心',
+        //   key: '/forum',
+        // },
         {
           label: '创作中心',
           key: '/write',

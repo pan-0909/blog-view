@@ -2,8 +2,8 @@
  * @Author: panrunjun
  * @Date: 2024-03-18 22:21:16
  * @LastEditors: Do not edit
- * @LastEditTime: 2024-03-30 11:48:43
- * @Description: 弹出模块
+ * @LastEditTime: 2024-04-02 14:17:20
+ * @Description: 弹出模块 父组件需要绑定ref
  * @FilePath: \blog-view\src\component\PModel.tsx
  */
 import { Modal } from "antd";

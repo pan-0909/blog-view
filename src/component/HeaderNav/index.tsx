@@ -14,10 +14,10 @@ const HeaderNav = () => {
           label: '首页',
           key: '/home',
         },
-        {
-          label: '论坛中心',
-          key: '/forum',
-        },
+        // {
+        //   label: '论坛中心',
+        //   key: '/forum',
+        // },
         {
           label: '创作中心',
           key: '/write',

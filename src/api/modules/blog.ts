@@ -2,7 +2,7 @@
  * @Author: panrunjun
  * @Date: 2023-12-16 16:46:51
  * @LastEditors: Do not edit
- * @LastEditTime: 2024-04-01 22:54:59
+ * @LastEditTime: 2024-04-02 16:34:15
  * @Description: const client = new HttpClient('https://api.example.com', 5000);
 
  * @FilePath: \blog-view\src\api\modules\blog.ts
@@ -53,4 +53,13 @@ export function getcommentListByBlogIdApi(data: Object): Promise<any> {
 export function getBlogByUserIdApi(data: Object): Promise<any> {
   console.log(data);
   return http.post(`blog/getBlogByUserId`,data); 
+}
+
+/**
+ * @description: 删除某个
+ * @param {string} _id
+ */
+ export function deleteBlogByIdApi(_id: string): Promise<any> {
+  console.log(_id);
+  return http.delete(`blog/deleteBlog/${_id}`);
 }

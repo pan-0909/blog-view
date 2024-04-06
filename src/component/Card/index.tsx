@@ -2,7 +2,7 @@
  * @Author: xx
  * @Date: 2023-08-24 22:41:56
  * @LastEditors: Do not edit
- * @LastEditTime: 2024-04-01 23:10:34
+ * @LastEditTime: 2024-04-02 16:58:59
  * @Description: card卡片
  * @FilePath: \blog-view\src\component\Card\index.tsx
  */
@@ -15,7 +15,7 @@ import { useMessage } from "@/hooks/useMessage";
 import { decreLike, increLike } from '@/store/modules/blog/blogSlice';
 import { useAppDispatch } from '@/hooks/useStore';
 
-const CardComponent = ({ title, content, _id, likes ,commentNum}: { title: string, content: string, _id: string, likes: number,commentNum:number }) => {
+const CardComponent = ({ title, content, _id, likes ,commentNum,faceImg}: { title: string, content: string, _id: string, likes: number,commentNum:number,faceImg:string }) => {
   const navigate = useNavigate()
   // 使用redux
   const dispatch = useAppDispatch()
@@ -71,7 +71,7 @@ const CardComponent = ({ title, content, _id, likes ,commentNum}: { title: strin
         onClick={getDetail.bind(null, _id)}
         hoverable
         style={{ margin: '5px 0px' }}
-        cover={<img alt="example" src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png" style={{ height: '170px' }} />}
+        // cover={<img alt="example" src={faceImg} style={{ height: '170px' }} />}
         actions={[
           <div onClick={(event: any) => { likeClick(event, _id) }}>
             <LikeOutlined />
@@ -81,13 +81,13 @@ const CardComponent = ({ title, content, _id, likes ,commentNum}: { title: strin
             <CommentOutlined />
             <span style={{ marginLeft: '7px', fontSize: '10px' }}>{commentNum}</span>
           </div>,
-          <Popover content={PopoverContent} title="操作" trigger="hover">
-            <EllipsisOutlined key="ellipsis" />
-          </Popover>
+          // <Popover content={PopoverContent} title="操作" trigger="hover">
+          //   <EllipsisOutlined key="ellipsis" />
+          // </Popover>
         ]}
       >
         <Meta
-          avatar={<Avatar src="https://xsgames.co/randomusers/avatar.php?g=pixel" />}
+          avatar={faceImg?<img src={faceImg} style={{height:'30px'}}></img>:<Avatar src="https://xsgames.co/randomusers/avatar.php?g=pixel" />}
           title={title} description={<div dangerouslySetInnerHTML={{ __html: content }}></div>}
         />
       </Card>

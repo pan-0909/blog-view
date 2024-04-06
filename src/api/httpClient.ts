@@ -93,6 +93,9 @@ export const http = {
   post<T>(url: string, data?: object, config?: AxiosRequestConfig): Promise<T> {
     return service.post(url, data, config)
   },
+  delete<T>(url: string, config?: AxiosRequestConfig): Promise<T> {
+    return service.delete(url, config)
+  },
   // 新增上传文件方法
   uploadFile<T>(url: string, file: File, config?: AxiosRequestConfig): Promise<T> {
     const formData = new FormData();

@@ -2,7 +2,7 @@
  * @Author: panrunjun
  * @Date: 2024-03-28 13:06:04
  * @LastEditors: Do not edit
- * @LastEditTime: 2024-03-30 22:08:25
+ * @LastEditTime: 2024-04-02 14:36:03
  * @Description: 博客的state
  * @FilePath: \blog-view\src\store\modules\blog\blogSlice.ts
  */
@@ -17,7 +17,6 @@ export interface Blog {
     content: string,
     createTime: string,
     author: string,
-    userId: number,
     likes: number,
     likedBy: object,
     collects: number,

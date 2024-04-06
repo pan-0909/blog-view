@@ -2,7 +2,7 @@
  * @Author: pan
  * @Date: 2023-08-24 21:14:59
  * @LastEditors: Do not edit
- * @LastEditTime: 2024-03-30 22:41:40
+ * @LastEditTime: 2024-04-02 17:11:08
  * @Description: 
  * @FilePath: \blog-view\src\views\home\index.tsx
  */
@@ -48,7 +48,7 @@ const Home = () => {
             <Row gutter={10}  >
                 {blogList.map((item: Blog) => (
                     <Col span={6} key={item._id} >
-                        <CardComponent title={item.title} content={item.content} _id={item._id} likes={item.likes} commentNum={item.commentNum} />
+                        <CardComponent title={item.title} content={item.content} _id={item._id} likes={item.likes} commentNum={item.commentNum}/>
                     </Col>
                 ))}
             </Row>

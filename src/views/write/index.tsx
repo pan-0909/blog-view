@@ -1,8 +1,8 @@
 /*
  * @Author: pan
  * @Date: 2024-03-12 20:28:40
- * @LastEditors: your name
- * @LastEditTime: 2024-03-13 10:42:20
+ * @LastEditors: Do not edit
+ * @LastEditTime: 2024-04-02 17:31:46
  * @Description: 
  * @FilePath: \blog-view\src\views\write\index.tsx
  */
@@ -13,8 +13,9 @@ import { blogApi } from "../../api/httpApi";
 import '../../api/httpApi.ts'
 import { useState } from 'react';
 import HeaderNav from '@/component/HeaderNav/index';
-import {useMessage} from '@/hooks/useMessage';
+import { useMessage } from '@/hooks/useMessage';
 import { useNavigate } from 'react-router-dom';
+import isLogin from '@/utils/isLogin';
 function Write() {
     const { showSuccess, showError } = useMessage();
     const navigate = useNavigate();
@@ -28,7 +29,7 @@ function Write() {
     const [content, setContent] = useState('');
     let label: string[] = []
     const EditorContentValue = (value: string) => {
-        console.log(value,11112);
+        console.log(value, 11112);
         setContent(value);
     }
 
@@ -40,22 +41,21 @@ function Write() {
 
     // 提交blog
     const submit = () => {
-        console.log(content);
-        console.log(title);
-        const author = '1'
-        const userId = '2'
-        blogApi.createApi({ title, content, author, userId, label }).then(res => {
-            console.log(res);
-            if(res.status === 200) {
-                showSuccess(res.data.msg);
-                setTimeout(() => {
-                        navigate('/home');  
-                }, 1000)
-            }else{
-                showError(res.data.msg)
-            }
-        })
-
+        if (!isLogin()) {
+            return showError("请先登录后发布博客!")
+        } else {
+            blogApi.createApi({ title, content, label }).then(res => {
+                console.log(res);
+                if (res.status === 200) {
+                    showSuccess(res.data.msg);
+                    setTimeout(() => {
+                        navigate('/home');
+                    }, 1000)
+                } else {
+                    showError(res.data.msg)
+                }
+            })
+        }
     }
     return (
         <div>

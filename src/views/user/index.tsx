@@ -2,7 +2,7 @@
  * @Author: xx
  * @Date: 2024-03-18 22:21:16
  * @LastEditors: Do not edit
- * @LastEditTime: 2024-04-01 23:24:37
+ * @LastEditTime: 2024-04-02 17:00:47
  * @Description: 
  * @FilePath: \blog-view\src\views\user\index.tsx
  */
@@ -80,7 +80,7 @@ const User = () => {
                     </Row>
 
                     <Divider />
-                    <Pagination onChange={onChangePage} total={totalBlogs} style={{display:'flex',justifyContent:'center'}}/>
+                    <Pagination hideOnSinglePage onChange={onChangePage} total={totalBlogs} style={{display:'flex',justifyContent:'center'}}/>
                 </div>
             </>),
         },
